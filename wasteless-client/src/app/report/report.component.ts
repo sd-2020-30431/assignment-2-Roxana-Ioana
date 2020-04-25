@@ -5,6 +5,7 @@ import { Report } from './report';
 import { Observable } from 'rxjs';
 import { GroceryItem } from '../grocery-items/item';
 import { of } from 'rxjs';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-report',
@@ -20,7 +21,7 @@ export class ReportComponent implements OnInit {
   report: Report;
 
   constructor(private reportService: ReportService,
-    private router: Router, private route: ActivatedRoute) { }
+    private router: Router, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.idUser = this.route.snapshot.params['idUser'];
@@ -31,5 +32,10 @@ export class ReportComponent implements OnInit {
                                                                           });
                                                                          
 
+  }
+
+  turnBack()
+  {
+    this.location.back();
   }
 }

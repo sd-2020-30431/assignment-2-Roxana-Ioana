@@ -1,12 +1,31 @@
 <p>Welcome</p>
-<!--  trebuie sa adaug 2 butoane cu view montly si weekly report care ma vor duce pe alta pagina cu report + buton de back
-      trebuie sa adaug chestia cu goalul
-      trebuie sa adaug sectiunea cu notificari-->
-
       <div>
         <h3>View reports</h3>
         <button (click)="getWeeklyReport()" class="btn btn-danger">Weekly Report</button>
         <button (click)="getMonthlyReport()" class="btn btn-danger">Montly Report</button>
         <button (click)="manageGroceryLists()" class="btn btn-danger">Manage Grocery Lists</button>
+        <br>
+        <br>
+        <br>
+     </div>
 
+    <div>
+        <form (ngSubmit)="onSubmitGoal()">
+        <div class="form-group">
+            
+            <label for="name">Set new goal  </label>
+            <input type="text" class="form-control" id="goal" required [(ngModel)]="goal.dailyCalories" name="goal">
+            
+            <button type="submit" class="btn btn-success">Submit</button>
+
+        </div>
+        </form>
+
+        <p *ngIf="currentGoal">
+            Your current goal is: {{ currentGoal | async }}
+        </p>
+        
+        <p *ngIf="calories">
+        In order to avoid making waste, according to your current groceries, you should eat: {{calories | async}} calories everyday
+        </p>
     </div>
