@@ -28,32 +28,25 @@ public class GroceryItemController {
     @RequestMapping(value = "/{idList}", method = RequestMethod.GET)
     public ResponseEntity<List<GroceryItem>> findItemsByIdList(@PathVariable("idList") int idList) {
         List<GroceryItem> itemsList = groceryItemService.findByIdList(idList);
-
         return new ResponseEntity<>(itemsList, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Integer> addGroceryItem(@RequestBody GroceryItemDTO groceryItemDTO)
-    {
+    public ResponseEntity<Integer> addGroceryItem(@RequestBody GroceryItemDTO groceryItemDTO) {
         GroceryItem groceryItem = groceryItemService.addGroceryItem(groceryItemMapper.convertToGroceryItem(groceryItemDTO));
-
         return new ResponseEntity<>(groceryItem.getIdItem(), HttpStatus.OK);
     }
 
     @Transactional
     @RequestMapping(value = "/{idItem}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteGroceryItem(@PathVariable("idItem") int idItem)
-    {
+    public ResponseEntity<Void> deleteGroceryItem(@PathVariable("idItem") int idItem) {
         groceryItemService.deleteItem(idItem);
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{idItem}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> updateGroceryItem(@RequestBody GroceryItemDTO groceryItemDTO)
-    {
+    public ResponseEntity<Void> updateGroceryItem(@RequestBody GroceryItemDTO groceryItemDTO){
         groceryItemService.setConsumptionDate();
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

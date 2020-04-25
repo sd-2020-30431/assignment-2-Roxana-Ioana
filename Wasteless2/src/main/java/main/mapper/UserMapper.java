@@ -12,7 +12,6 @@ public class UserMapper {
         user.setIdUser(userDTO.getIdUser());
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
-        user.setDailyCalories(userDTO.getDailyCalories());
 
         return user;
     }
@@ -24,7 +23,6 @@ public class UserMapper {
         userDTO.setIdUser(user.getIdUser());
         userDTO.setUsername(user.getUsername());
         userDTO.setPassword(user.getPassword());
-        userDTO.setDailyCalories(user.getDailyCalories());
 
         return userDTO;
     }

@@ -8,7 +8,6 @@ public class UserDTO {
     private int idUser;
     private String username;
     private String password;
-    private int dailyCalories;
 
     public UserDTO() {
     }
@@ -48,11 +47,4 @@ public class UserDTO {
         this.password = password;
     }
 
-    public int getDailyCalories() {
-        return dailyCalories;
-    }
-
-    public void setDailyCalories(int dailyCalories) {
-        this.dailyCalories = dailyCalories;
-    }
 }

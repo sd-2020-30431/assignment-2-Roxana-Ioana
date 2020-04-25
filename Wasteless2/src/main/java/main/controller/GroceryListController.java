@@ -25,26 +25,20 @@ public class GroceryListController {
     }
 
     @RequestMapping(value="/{idUser}", method = RequestMethod.GET)
-    public ResponseEntity<List<GroceryList>> getAllGroceryLists(@PathVariable("idUser") int idUser)
-    {
+    public ResponseEntity<List<GroceryList>> getAllGroceryLists(@PathVariable("idUser") int idUser) {
         List<GroceryList> groceryLists = groceryListService.selectAllLists(idUser);
-
         return new ResponseEntity<>(groceryLists, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Integer> createGroceryList(@RequestBody GroceryListDTO groceryListDTO)
-    {
+    public ResponseEntity<Integer> createGroceryList(@RequestBody GroceryListDTO groceryListDTO) {
         GroceryList groceryList1 = groceryListService.createNewList(groceryListMapper.convertToGroceryList(groceryListDTO));
-
         return new ResponseEntity<>(groceryList1.getIdList(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{idList}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteGroceryList(@PathVariable("idList") int idList)
-    {
+    public ResponseEntity<Void> deleteGroceryList(@PathVariable("idList") int idList) {
         groceryListService.deleteList(idList);
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

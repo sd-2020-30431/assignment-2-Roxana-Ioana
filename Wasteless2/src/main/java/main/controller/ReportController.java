@@ -20,10 +20,8 @@ public class ReportController {
     }
 
     @RequestMapping(value = "/{idUser}/{type}", method = RequestMethod.GET)
-    public ResponseEntity<ReportDTO> getMonthlyReport(@PathVariable("idUser") int idUser, @PathVariable("type") String reportType)
-    {
+    public ResponseEntity<ReportDTO> getMonthlyReport(@PathVariable("idUser") int idUser, @PathVariable("type") String reportType) {
         ReportDTO reportDTO = reportService.getReport(idUser, ReportType.valueOf(reportType));
-        System.out.println(reportDTO.toString());
         return new ResponseEntity<>(reportDTO, HttpStatus.OK);
     }
 }

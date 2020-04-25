@@ -27,7 +27,6 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Integer> findUser(@RequestBody UserDTO userDTO) {
         Optional<User> foundUser = userService.findUser(userDTO.getUsername(), userDTO.getPassword());
-
         return foundUser.map(user -> new ResponseEntity<>(foundUser.get().getIdUser(), HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED));
     }
 }
