@@ -29,8 +29,14 @@ public class GoalController {
     }
 
     @RequestMapping(value="/{idUser}",method = RequestMethod.GET)
-    public ResponseEntity<GoalDTO> getGoal(@PathVariable("idUser") int idUser) {
+    public ResponseEntity<Integer> getGoal(@PathVariable("idUser") int idUser) {
         Goal goal = goalService.getGoal(idUser);
-        return new ResponseEntity<>(goalMapper.convertToDTO(goal), HttpStatus.OK);
+        return new ResponseEntity<>(goal.getDailyCalories(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/dailyCalories/{idUser}",method = RequestMethod.GET)
+    public ResponseEntity<Integer> getDailyCalories(@PathVariable("idUser") int idUser) {
+        int calories = goalService.getNecessaryDailyCalories(idUser);
+        return new ResponseEntity<>(calories, HttpStatus.OK);
     }
 }

@@ -49,4 +49,10 @@ public class GroceryItemController {
         groceryItemService.setConsumptionDate();
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/to-expire/{idUser}", method = RequestMethod.GET)
+    public ResponseEntity<List<GroceryItem>> getGroceryItemsWhichExpire(@PathVariable("idUser") int idUser){
+        List<GroceryItem> groceryItems = groceryItemService.getGroceryItemsWhichExpire(idUser);
+        return new ResponseEntity<>(groceryItems, HttpStatus.OK);
+    }
 }
