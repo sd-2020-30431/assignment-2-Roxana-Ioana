@@ -5,13 +5,19 @@ import { FirstPageComponentComponent } from './first-page-component/first-page-c
 import { LoginComponent } from './login/login.component';
 import { ViewAllListsComponent } from './view-all-lists/view-all-lists.component';
 import { GroceryItemsComponent } from './grocery-items/grocery-items.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   {path:'', component:FirstPageComponentComponent},
   {path:'grocery-lists/:idUser', component: ViewAllListsComponent},
   {path:'grocery-lists', component: ViewAllListsComponent},
   {path:'login', component:LoginComponent},
+  {path:'grocery-items/:idList', component:GroceryItemsComponent},
   {path:'grocery-items', component:GroceryItemsComponent},
+  {path:'report', component:ReportComponent},
+  {path:'main-page/:idUser', component:MainPageComponent},
+  {path:'report/:idUser/:type', component:ReportComponent},
+
 ];
 
 @NgModule({

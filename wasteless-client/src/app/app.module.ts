@@ -10,6 +10,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { FirstPageComponentComponent } from './first-page-component/first-page-component.component';
 import { ViewAllListsComponent } from './view-all-lists/view-all-lists.component';
 import { GroceryItemsComponent } from './grocery-items/grocery-items.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GroceryItemsComponent } from './grocery-items/grocery-items.component';
     MainPageComponent,
     FirstPageComponentComponent,
     ViewAllListsComponent,
-    GroceryItemsComponent
+    GroceryItemsComponent,
+    ReportComponent
   ],
   imports: [
     FormsModule,

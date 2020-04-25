@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { GroceryItem } from './item';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { GroceryItemsService } from '../grocery-items.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-grocery-items',
@@ -7,9 +12,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroceryItemsComponent implements OnInit {
 
-  constructor() { }
+  item: GroceryItem = new GroceryItem();
+  idList:number;
+  groceryItemsList:Observable<GroceryItem[]>;
+
+  constructor(private groceryItemsService: GroceryItemsService,
+    private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.idList = this.route.snapshot.params['idList'];
+    this.reloadData();
   }
 
+  reloadData() {
+    this.groceryItemsList = this.groceryItemsService.getAllGroceryItems(this.idList);
+  }
+
+  addItem()
+  {
+    this.item.idList = this.idList;
+    this.groceryItemsService.addGroceryItem(this.item).subscribe(data=>{console.log(data); this.reloadData()});
+  }
+
+  onSubmit()
+  {
+    this.addItem();
+  }
+
+  donate(idItem:number)
+  {
+    this.groceryItemsService.deleteGroceryItem(idItem).subscribe( data => {
+                                                                    this.reloadData();
+                                                                  },
+                                                                  error => console.log(error));
+  }
 }

@@ -43,7 +43,6 @@ export class ViewAllListsComponent implements OnInit {
     this.groceryListService.deleteGroceryList(id)
     .subscribe(
       data => {
-        console.log("buna");
         this.reloadData();
       },
       error => console.log(error));

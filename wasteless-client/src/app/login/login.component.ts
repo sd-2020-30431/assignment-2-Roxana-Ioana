@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   goToNextPage(idUser:Object) {
-    this.router.navigate(['/grocery-lists', idUser]);
+    this.router.navigate(['/main-page', idUser]);
   }
 
 }
