@@ -8,4 +8,8 @@ export class GroceryItem{
     purchaseDate:Date;
     expirationDate:Date;
     consumptionDate:Date;
+
+    toString(): string {
+        return this.name + ' ' + this.calories;
+    }
 }

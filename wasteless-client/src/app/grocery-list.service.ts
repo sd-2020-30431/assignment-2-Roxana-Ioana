@@ -22,5 +22,4 @@ export class GroceryListService {
   getAllGroceryLists(idUser:number):Observable<any>{
     return this.http.get(`${this.baseUrl}/${idUser}`);
   }
-
 }

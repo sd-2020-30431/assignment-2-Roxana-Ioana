@@ -22,4 +22,8 @@ export class GroceryItemsService {
   getAllGroceryItems(idList:number):Observable<any>{
     return this.http.get(`${this.baseUrl}/${idList}`);
   }
+
+  getGroceryItemsWhichExpire(idUser:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}/to-expire/${idUser}`);
+  }
 }

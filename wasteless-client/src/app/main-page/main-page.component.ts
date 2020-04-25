@@ -3,6 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { GoalService } from '../goal.service';
 import { Goal } from '../login/goal';
 import { Observable } from 'rxjs';
+import { SubjectHandler } from '../subject-handler';
+import { ObserverHandler } from '../observer-handler';
+import { GroceryItemsService } from '../grocery-items.service';
+import { GroceryItem } from '../grocery-items/item';
 
 @Component({
   selector: 'app-main-page',
@@ -17,11 +21,23 @@ export class MainPageComponent implements OnInit {
   goal: Goal = new Goal();
   currentGoal: Observable<number>;
   calories:Observable<number>;
+  observer: ObserverHandler;
+  subject: SubjectHandler;
+  groceryItems: GroceryItem[];
 
-  constructor(private route:ActivatedRoute,private router: Router, private goalService:GoalService) { }
+  constructor(private route:ActivatedRoute,private router: Router, private goalService:GoalService, private groceryItemsService:GroceryItemsService) { }
 
   ngOnInit(): void {
+    
+    this.subject = new SubjectHandler();
+    this.observer = new ObserverHandler(this.subject);
+
     this.idUser = this.route.snapshot.params['idUser'];
+
+    this.groceryItemsService.getGroceryItemsWhichExpire(this.idUser).subscribe(data=>{this.groceryItems=data;
+    this.subject.setGroceryItemsWhichExpire(this.groceryItems);
+   });  
+
     this.reLoad();
   }
 

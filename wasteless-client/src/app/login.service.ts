@@ -13,7 +13,7 @@ export class LoginService {
   
   constructor(private http: HttpClient) { }
 
-  findUser(user:Object):Observable<Object>{
+  findUser(user:Object):Observable<any>{
     return this.http.post(`${this.baseUrl}`, user);
   }
 }

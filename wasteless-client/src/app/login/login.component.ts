@@ -3,6 +3,10 @@ import {LoginService} from '../login.service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from './user';
 import { FormsModule } from '@angular/forms';
+import { SubjectHandler } from '../subject-handler';
+import { GroceryItem } from '../grocery-items/item';
+import { GroceryItemsComponent } from '../grocery-items/grocery-items.component';
+import { GroceryItemsService } from '../grocery-items.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +15,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   
-  data1:User;
+  groceryItems:GroceryItem[];
   user: User=new User();
+  userId:number;
   submitted = false;
 
   constructor(private loginService: LoginService,
@@ -24,7 +29,7 @@ export class LoginComponent implements OnInit {
   findUser()
   {
      this.loginService.findUser(this.user)
-      .subscribe(data=>{console.log(data),
+      .subscribe(data=>{this.userId = data,
                         this.goToNextPage(data);
                         },
                  error=>{console.log("Fail to log in")});
