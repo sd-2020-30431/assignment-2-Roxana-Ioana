@@ -1,0 +1,36 @@
+<div style="width: 400px;">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">List name </label>
+        <input type="text" class="form-control" id="listName" required [(ngModel)]="list.name" name="name">
+      </div>
+  
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+<br>
+<br>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Grocery Lists</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>List Name</th>
+            <th>Delete</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let list of groceryLists | async">
+            <td>{{list.name}}</td>
+            <td><button (click)="deleteGroceryList(list.idList)" class="btn btn-danger">Delete</button>
+                <button (click)="updateGroceryList(list.idList)" class="btn btn-info" style="margin-left: 10px">Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
