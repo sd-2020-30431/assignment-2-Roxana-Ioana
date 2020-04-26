@@ -26,4 +26,8 @@ export class GroceryItemsService {
   getGroceryItemsWhichExpire(idUser:number):Observable<any>{
     return this.http.get(`${this.baseUrl}/to-expire/${idUser}`);
   }
+
+  updateGroceryItem(groceryItem:Object):Observable<any>{
+    return this.http.put(`${this.baseUrl}`, groceryItem);
+  }
 }

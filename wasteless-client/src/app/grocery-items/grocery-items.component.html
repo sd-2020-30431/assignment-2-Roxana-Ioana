@@ -1,4 +1,5 @@
-<p>grocery-items works!</p>
+<h3>Grocery Items</h3>
+<p>Add Grocery Item</p>
 <div style="width: 400px;">
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
@@ -49,17 +50,20 @@
             <th>Purchase Date</th>
             <th>Expiration Date</th>
             <th>Consumption Date</th>
+            <th>Donate</th>
+            <th>Update</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of groceryItemsList | async">
-            <td>{{item.name}}</td>
-            <td>{{item.quantity}}</td>
-            <td>{{item.calories}}</td>
-            <td>{{item.purchaseDate}}</td>
-            <td>{{item.expirationDate}}</td>
-            <td>{{item.consumptionDate}}</td>
-            <td><button (click)="donate(item.idItem)" class="btn btn-danger">Donate</button>
+          <tr *ngFor="let item1 of groceryItemsList | async">
+            <td>{{item1.name}}</td>
+            <td>{{item1.quantity}}</td>
+            <td>{{item1.calories}}</td>
+            <td>{{item1.purchaseDate}}</td>
+            <td>{{item1.expirationDate}}</td>
+            <td>{{item1.consumptionDate}}</td>
+            <td><button (click)="donate(item1.idItem)" class="btn btn-danger">Donate</button>
+            <td><button (click)="update(item1)" class="btn btn-success">Edit</button>
             </td>
           </tr>
         </tbody>

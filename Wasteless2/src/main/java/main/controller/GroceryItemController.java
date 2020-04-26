@@ -52,9 +52,9 @@ public class GroceryItemController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{idItem}", method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<Void> updateGroceryItem(@RequestBody GroceryItemDTO groceryItemDTO) {
-        groceryItemService.setConsumptionDate();
+        groceryItemService.updateItem(groceryItemMapper.convertToGroceryItem(groceryItemDTO));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

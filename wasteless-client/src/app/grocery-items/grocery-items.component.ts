@@ -15,6 +15,7 @@ export class GroceryItemsComponent implements OnInit {
   item: GroceryItem = new GroceryItem();
   idList:number;
   groceryItemsList:Observable<GroceryItem[]>;
+  isUpdate:boolean;
 
   constructor(private groceryItemsService: GroceryItemsService,
     private router: Router, private route: ActivatedRoute) { }
@@ -36,7 +37,16 @@ export class GroceryItemsComponent implements OnInit {
 
   onSubmit()
   {
-    this.addItem();
+    if(this.isUpdate)
+    {
+      this.finalizeUpdate(this.item);
+      this.isUpdate = false;
+      window.location.reload();
+    }
+    else
+    {
+      this.addItem();
+    }
   }
 
   donate(idItem:number)
@@ -46,4 +56,19 @@ export class GroceryItemsComponent implements OnInit {
                                                                   },
                                                                   error => console.log(error));
   }
+
+  finalizeUpdate(item:GroceryItem)
+  {
+    this.groceryItemsService.updateGroceryItem(item).subscribe( data => {
+      this.reloadData();
+    },
+    error => console.log(error));
+  }
+
+  update(item:GroceryItem)
+  {
+    this.item = item;
+    this.isUpdate=true;
+  }
+  
 }

@@ -33,7 +33,8 @@ public class GroceryItemService {
         groceryItemRepository.deleteByIdItem(idItem);
     }
 
-    public void setConsumptionDate() {
+    public void updateItem(GroceryItem groceryItem) {
+        groceryItemRepository.save(groceryItem);
     }
 
     public List<GroceryItem> getGroceryItemsWhichExpire(int idUser) {
