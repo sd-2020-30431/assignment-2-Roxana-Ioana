@@ -16,4 +16,8 @@ export class FirstPageComponentComponent implements OnInit {
   goToLogin() {
     this.router.navigate(['/login']);
   }
+
+  goToRegister(){
+    this.router.navigate(['/register']);
+  }
 }

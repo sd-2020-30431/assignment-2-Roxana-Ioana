@@ -16,4 +16,8 @@ export class LoginService {
   findUser(user:Object):Observable<any>{
     return this.http.post(`${this.baseUrl}`, user);
   }
+
+  createUser(user:Object):Observable<any>{
+    return this.http.post(`${this.baseUrl}/register`, user);
+  }
 }

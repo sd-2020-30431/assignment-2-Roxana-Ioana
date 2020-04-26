@@ -21,9 +21,10 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   constructor(private loginService: LoginService,
-    private router: Router, private route: ActivatedRoute) { }
+    private router: Router) { }
 
   ngOnInit(): void {
+
   }
 
   findUser()

@@ -6,12 +6,14 @@ import { LoginComponent } from './login/login.component';
 import { ViewAllListsComponent } from './view-all-lists/view-all-lists.component';
 import { GroceryItemsComponent } from './grocery-items/grocery-items.component';
 import { ReportComponent } from './report/report.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {path:'', component:FirstPageComponentComponent},
   {path:'grocery-lists/:idUser', component: ViewAllListsComponent},
   {path:'grocery-lists', component: ViewAllListsComponent},
   {path:'login', component:LoginComponent},
+  {path:'register', component:RegisterComponent},
   {path:'grocery-items/:idList', component:GroceryItemsComponent},
   {path:'grocery-items', component:GroceryItemsComponent},
   {path:'report', component:ReportComponent},

@@ -11,6 +11,7 @@ import { FirstPageComponentComponent } from './first-page-component/first-page-c
 import { ViewAllListsComponent } from './view-all-lists/view-all-lists.component';
 import { GroceryItemsComponent } from './grocery-items/grocery-items.component';
 import { ReportComponent } from './report/report.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReportComponent } from './report/report.component';
     FirstPageComponentComponent,
     ViewAllListsComponent,
     GroceryItemsComponent,
-    ReportComponent
+    ReportComponent,
+    RegisterComponent
   ],
   imports: [
     FormsModule,
