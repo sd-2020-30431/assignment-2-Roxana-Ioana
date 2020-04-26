@@ -23,36 +23,31 @@ public class GoalService {
         this.groceryItemRepository = groceryItemRepository;
     }
 
-    public Goal createGoal(Goal goal)
-    {
+    public Goal createGoal(Goal goal) {
         return goalRepository.save(goal);
     }
 
-    public int getNecessaryDailyCalories(int idUser)
-    {
+    public int getNecessaryDailyCalories(int idUser) {
         List<GroceryList> lists = groceryListRepository.findAllByIdUser(idUser);
         List<GroceryItem> items = lists.stream().map(groceryList -> groceryItemRepository.findByIdList(groceryList.getIdList())).flatMap(Collection::stream).collect(Collectors.toList());
 
         int totalCaloriesPerDay = 0;
-       for(GroceryItem item:items)
-       {
-           if(item.getConsumptionDate()==null && item.getExpirationDate().isAfter(LocalDate.now()))
-           {
-               LocalDate currentDate = LocalDate.now();
-               Period periodUntilExpiration = currentDate.until(item.getExpirationDate());
-               int daysUntilExpiration = periodUntilExpiration.getDays();
+        for (GroceryItem item : items) {
+            if (item.getConsumptionDate() == null && item.getExpirationDate().isAfter(LocalDate.now())) {
+                LocalDate currentDate = LocalDate.now();
+                Period periodUntilExpiration = currentDate.until(item.getExpirationDate());
+                int daysUntilExpiration = periodUntilExpiration.getDays();
 
-               int idealBurndown = item.getCalories()/daysUntilExpiration;
-               totalCaloriesPerDay += idealBurndown;
-           }
-       }
+                int idealBurndown = item.getCalories() / daysUntilExpiration;
+                totalCaloriesPerDay += idealBurndown;
+            }
+        }
 
-       return totalCaloriesPerDay;
+        return totalCaloriesPerDay;
     }
 
-    public Goal getGoal(int idUser)
-    {
+    public Goal getGoal(int idUser) {
         List<Goal> goals = goalRepository.findAllByIdUser(idUser).get();
-        return goals.get(goals.size()-1);
+        return goals.get(goals.size() - 1);
     }
 }

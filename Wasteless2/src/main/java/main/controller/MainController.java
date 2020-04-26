@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<String> findItemsByIdList() {
-        return new ResponseEntity<>("IT WORKS", HttpStatus.OK);
+    public ResponseEntity findItemsByIdList() {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

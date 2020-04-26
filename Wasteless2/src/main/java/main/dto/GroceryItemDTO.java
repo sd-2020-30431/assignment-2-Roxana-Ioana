@@ -2,7 +2,6 @@ package main.dto;
 
 import com.fasterxml.jackson.annotation.*;
 
-import javax.persistence.*;
 import java.time.*;
 
 @JsonRootName(value = "grocery-item")
@@ -43,6 +42,11 @@ public class GroceryItemDTO {
         this.purchaseDate = purchaseDate;
         this.expirationDate = expirationDate;
         this.consumptionDate = consumptionDate;
+    }
+
+    public GroceryItemDTO(int idList, String name) {
+        this.idList = idList;
+        this.name = name;
     }
 
     public int getIdList() {

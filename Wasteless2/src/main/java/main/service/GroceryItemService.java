@@ -36,8 +36,7 @@ public class GroceryItemService {
     public void setConsumptionDate() {
     }
 
-    public List<GroceryItem> getGroceryItemsWhichExpire(int idUser)
-    {
+    public List<GroceryItem> getGroceryItemsWhichExpire(int idUser) {
         //get all items for user
         List<GroceryList> lists = groceryListRepository.findAllByIdUser(idUser);
         List<GroceryItem> items = lists.stream().map(groceryList -> groceryItemRepository.findByIdList(groceryList.getIdList())).flatMap(Collection::stream).collect(Collectors.toList());
@@ -46,8 +45,7 @@ public class GroceryItemService {
         return getItemsWhichExpireNext5Days(items);
     }
 
-    private List<GroceryItem> getItemsWhichExpireNext5Days(List<GroceryItem> items)
-    {
+    private List<GroceryItem> getItemsWhichExpireNext5Days(List<GroceryItem> items) {
         LocalDate date = LocalDate.now().plusDays(5);
         return items.stream().filter(groceryItem -> groceryItem.getExpirationDate().isBefore(date) && groceryItem.getConsumptionDate() == null).collect(Collectors.toList());
     }

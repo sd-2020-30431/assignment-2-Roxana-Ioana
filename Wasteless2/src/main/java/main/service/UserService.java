@@ -20,4 +20,8 @@ public class UserService {
     public Optional<User> findUser(String username, String password) {
         return Optional.ofNullable(userRepository.findByUsernameAndPassword(username, password));
     }
+
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
 }

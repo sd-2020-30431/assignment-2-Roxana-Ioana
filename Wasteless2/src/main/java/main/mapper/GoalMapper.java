@@ -5,8 +5,7 @@ import main.model.*;
 
 public class GoalMapper {
 
-    public Goal convert(GoalDTO goalDTO)
-    {
+    public Goal convert(GoalDTO goalDTO) {
         Goal goal = new Goal();
 
         goal.setIdUser(goalDTO.getIdUser());
@@ -16,8 +15,7 @@ public class GoalMapper {
         return goal;
     }
 
-    public GoalDTO convertToDTO(Goal goal)
-    {
+    public GoalDTO convertToDTO(Goal goal) {
         GoalDTO goalDTO = new GoalDTO();
 
         goalDTO.setIdUser(goal.getIdUser());

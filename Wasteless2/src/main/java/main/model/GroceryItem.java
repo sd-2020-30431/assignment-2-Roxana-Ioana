@@ -40,6 +40,11 @@ public class GroceryItem {
         this.consumptionDate = consumptionDate;
     }
 
+    public GroceryItem(int idList, String name) {
+        this.idList = idList;
+        this.name = name;
+    }
+
     public int getIdList() {
         return idList;
     }

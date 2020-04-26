@@ -2,17 +2,14 @@ import main.controller.*;
 import main.dto.*;
 import main.mapper.*;
 import main.model.*;
-import main.repository.*;
 import main.service.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.*;
 import org.mockito.runners.*;
 
-import javax.persistence.criteria.*;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GroceryItemControllerTest {
@@ -34,7 +31,7 @@ public class GroceryItemControllerTest {
     }
 
     @Test
-    public void addGroceryItem(){
+    public void addGroceryItem() {
         int idList = 1;
 
         GroceryItemDTO groceryItemDTO = new GroceryItemDTO(idList, "paine");
@@ -45,6 +42,6 @@ public class GroceryItemControllerTest {
 
         Integer idItem = groceryItemController.addGroceryItem(groceryItemDTO).getBody();
         System.out.println(idItem);
-        assertEquals((Integer)groceryItem.getIdItem(), idItem);
+        assertEquals((Integer) groceryItem.getIdItem(), idItem);
     }
 }

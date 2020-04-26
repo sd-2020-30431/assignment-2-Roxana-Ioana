@@ -5,8 +5,7 @@ import main.model.*;
 
 public class UserMapper {
 
-    public User convertToUser(UserDTO userDTO)
-    {
+    public User convertToUser(UserDTO userDTO) {
         User user = new User();
 
         user.setIdUser(userDTO.getIdUser());
@@ -16,8 +15,7 @@ public class UserMapper {
         return user;
     }
 
-    public UserDTO convertToDTO(User user)
-    {
+    public UserDTO convertToDTO(User user) {
         UserDTO userDTO = new UserDTO();
 
         userDTO.setIdUser(user.getIdUser());

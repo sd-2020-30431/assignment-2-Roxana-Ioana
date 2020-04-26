@@ -4,6 +4,7 @@ import main.dto.*;
 import main.mapper.*;
 import main.model.*;
 import main.service.*;
+import main.validators.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,13 @@ public class GroceryItemController {
 
     private final GroceryItemService groceryItemService;
     private GroceryItemMapper groceryItemMapper;
+    private GroceryItemValidator groceryItemValidator;
 
     @Autowired
     public GroceryItemController(GroceryItemService groceryItemService) {
         this.groceryItemService = groceryItemService;
         groceryItemMapper = new GroceryItemMapper();
+        groceryItemValidator = new GroceryItemValidator();
     }
 
     @RequestMapping(value = "/{idList}", method = RequestMethod.GET)
@@ -33,8 +36,13 @@ public class GroceryItemController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Integer> addGroceryItem(@RequestBody GroceryItemDTO groceryItemDTO) {
-        GroceryItem groceryItem = groceryItemService.addGroceryItem(groceryItemMapper.convertToGroceryItem(groceryItemDTO));
-        return new ResponseEntity<>(groceryItem.getIdItem(), HttpStatus.OK);
+        try {
+            groceryItemValidator.validate(groceryItemDTO);
+            GroceryItem groceryItem = groceryItemService.addGroceryItem(groceryItemMapper.convertToGroceryItem(groceryItemDTO));
+            return new ResponseEntity<>(groceryItem.getIdItem(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
     @Transactional
@@ -45,13 +53,13 @@ public class GroceryItemController {
     }
 
     @RequestMapping(value = "/{idItem}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> updateGroceryItem(@RequestBody GroceryItemDTO groceryItemDTO){
+    public ResponseEntity<Void> updateGroceryItem(@RequestBody GroceryItemDTO groceryItemDTO) {
         groceryItemService.setConsumptionDate();
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/to-expire/{idUser}", method = RequestMethod.GET)
-    public ResponseEntity<List<GroceryItem>> getGroceryItemsWhichExpire(@PathVariable("idUser") int idUser){
+    public ResponseEntity<List<GroceryItem>> getGroceryItemsWhichExpire(@PathVariable("idUser") int idUser) {
         List<GroceryItem> groceryItems = groceryItemService.getGroceryItemsWhichExpire(idUser);
         return new ResponseEntity<>(groceryItems, HttpStatus.OK);
     }

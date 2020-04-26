@@ -2,12 +2,10 @@ package main.mapper;
 
 import main.dto.*;
 import main.model.*;
-import org.springframework.web.servlet.view.groovy.*;
 
 public class GroceryListMapper {
 
-    public GroceryList convertToGroceryList(GroceryListDTO groceryListDTO)
-    {
+    public GroceryList convertToGroceryList(GroceryListDTO groceryListDTO) {
         GroceryList groceryList = new GroceryList();
 
         groceryList.setIdUser(groceryListDTO.getIdUser());
@@ -17,8 +15,7 @@ public class GroceryListMapper {
         return groceryList;
     }
 
-    public GroceryListDTO convertToDTO(GroceryList groceryList)
-    {
+    public GroceryListDTO convertToDTO(GroceryList groceryList) {
         GroceryListDTO groceryListDTO = new GroceryListDTO();
 
         groceryListDTO.setIdUser(groceryList.getIdUser());
