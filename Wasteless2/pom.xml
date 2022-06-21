@@ -10,7 +10,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <db>8.0.18</db>
+        <db>8.0.28</db>
         <jpa>2.2.2.RELEASE</jpa>
         <orm>5.2.2.RELEASE</orm>
         <hibernate>6.0.0.Alpha4</hibernate>
